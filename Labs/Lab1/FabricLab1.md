@@ -32,7 +32,7 @@ In this exercise, you will sign up for a Power BI free license and sign up for a
 
 1. You need to sign up for a Power BI license, which is a requirement to get start with Fabric. Enter your username from the Azure credentials by clicking the **Lab Environment** tab at the top of the Lab Player.
 
-    ![](Exercise1images/media/Lab1_Image1.png)
+    ![](ExerciseImages/media/Lab1_Image1.png)
 
 2. Paste your email and hit submit. You may be required to verify additonal information
 
@@ -40,18 +40,18 @@ In this exercise, you will sign up for a Power BI free license and sign up for a
 
 3. Click Get Started and view the Fabric home page.
 
-    ![](Exercise1images/media/Lab1_Image3.png)
+    ![](ExerciseImages/media/Lab1_Image3.png)
 
 4. In the Fabric browser window, click on the Account manager and click "Start trial"
 
-   ![](Exercise1images/media/Lab1_Image4.png)
-   ![](Exercise1images/media/Lab1_Image5.png)
+   ![](ExerciseImages/media/Lab1_Image4.png)
+   ![](ExerciseImages/media/Lab1_Image5.png)
 
    You may get another pop-up window, click "Start trail" again in that window if prompted.
 
 5. Click on Account Management again, to verify the status of your trial.
 
-    ![](Exercise1images/media/Lab1_Image6.png)
+    ![](ExerciseImages/media/Lab1_Image6.png)
 
 
 ### Summary
