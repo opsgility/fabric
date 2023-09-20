@@ -36,7 +36,7 @@ In this exercise, you will sign up for a Power BI free license and sign up for a
 
 2. Paste your email and hit submit. You may be required to verify additonal information
 
-    ![]((Exercise1images/media/Lab1_Image2.png)
+    ![]((ExerciseImages/media/Lab1_Image2.png)
 
 3. Click Get Started and view the Fabric home page.
 
@@ -45,11 +45,12 @@ In this exercise, you will sign up for a Power BI free license and sign up for a
 4. In the Fabric browser window, click on the Account manager and click "Start trial"
 
    ![](ExerciseImages/media/Lab1_Image4.png)
+   
    ![](ExerciseImages/media/Lab1_Image5.png)
 
    You may get another pop-up window, click "Start trail" again in that window if prompted.
 
-5. Click on Account Management again, to verify the status of your trial.
+6. Click on Account Management again, to verify the status of your trial.
 
     ![](ExerciseImages/media/Lab1_Image6.png)
 
