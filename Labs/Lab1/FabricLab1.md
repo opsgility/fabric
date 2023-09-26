@@ -28,33 +28,53 @@ In this exercise, you will sign up for a Power BI free license and sign up for a
 
 - 15 minutes
 
-### Task 1: Create an Azure Virtual Network
+### Task 1: Sign up for a Fabric trial
 
 1. You need to sign up for a Power BI license, which is a requirement to get start with Fabric. Enter your username from the Azure credentials by clicking the **Lab Environment** tab at the top of the Lab Player.
 
-    ![](ExerciseImages/media/Lab1_Image1.png)
+    ![](Exercise1images/media/Lab1_Image1.png)
 
 2. Paste your email and hit submit. You may be required to verify additonal information
 
-    ![]((ExerciseImages/media/Lab1_Image2.png)
+    ![]((Exercise1images/media/Lab1_Image2.png)
 
 3. Click Get Started and view the Fabric home page.
 
-    ![](ExerciseImages/media/Lab1_Image3.png)
+    ![](Exercise1images/media/Lab1_Image3.png)
 
 4. In the Fabric browser window, click on the Account manager and click "Start trial"
 
-   ![](ExerciseImages/media/Lab1_Image4.png)
-   
-   ![](ExerciseImages/media/Lab1_Image5.png)
+   ![](Exercise1images/media/Lab1_Image4.png)
+   ![](Exercise1images/media/Lab1_Image5.png)
 
    You may get another pop-up window, click "Start trail" again in that window if prompted.
 
-6. Click on Account Management again, to verify the status of your trial.
+5. Click on Account Management again, to verify the status of your trial.
 
-    ![](ExerciseImages/media/Lab1_Image6.png)
+    ![](Exercise1images/media/Lab1_Image6.png)
+
+### Task 2: Create two workspaces
+
+1. Return to the Fabric homepage by navigating to https://app.fabric.microsoft.com/home.
+
+2. Select the Power BI experience. 
+ ![](Exercise1images/media/Lab1_Image7.png)
+
+3. Select Workspaces on the left. Then select + New Workspace. 
+![](Exercise1images/media/Lab1_Image8.png)
+
+4. Name the workspace FabricWS1. 
+![](Exercise1images/media/Lab1_Image9.png)
+
+5. Expand the Advanced section and verify that the License mode is set to Trial. Then click Apply.
+![](Exercise1images/media/Lab1_Image10.png)
+
+6. Select Workspaces on the left again. Then select + New Workspace. 
+
+7. Name the workspace FabricWS2. Then click Apply.
+![](Exercise1images/media/Lab1_Image10.png)
 
 
 ### Summary
 
-In this exercise, you have enabled the Fabric trial for your training class.
+In this exercise, you have enabled the Fabric trial for your training class. You then created two empty workspaces. 
