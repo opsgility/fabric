@@ -1,145 +1,129 @@
 # Lab Guide
 
-## Query a Lakehouse
+## Create and Query a Data Warehouse
 
 ### Overview
-In this exercise, you will use the previously created lakehouses to query the uploaded customer data. 
+In this exercise, you will create a Fabric Warehouse and then query data using T-SQL. 
 
 ### Time Estimate
 
-- 30 minutes
+- 20 minutes
 
 ## Exercise 1: Query data uploaded to a lakehouse
 
 ### Overview
 
-In this exercise, you will query data uploaded to Lakehouse2. Then you will query the same data in Lakehouse1 referenced by a shortcut created in a previous module. 
+In this exercise, you will create a warehouse with sample data and then execute queries to analyze the data. 
 
-### Task 1: Upload data
+### Task 1: Create a warehouse and poulate it with data
 
-1. Download the sales.csv file from https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/sales.csv, saving it as sales.csv on your local computer (or lab VM if applicable).
+1. In a web browser, navigate to the Fabric home page at https://app.fabric.microsoft.com/home. 
 
-    ![](Exercise1images/media/Lab4_Image1.png)
+2. Select the Synapse Data Warehouse experience. 
 
-2. In a web browser, navigate to the Fabric home page at https://app.fabric.microsoft.com/home. 
-
-2. Select the Synapse Data Engineering experience. 
-
-    ![](Exercise1images/media/Lab4_Image2.png)
+    ![](Exercise1images/media/Lab5_Image1.png)
 
 3. In the menu on the left, select Workspaces and then choose the FabricWS2 workspace. 
 
-  ![](Exercise1images/media/Lab4_Image3.png)
+  ![](Exercise1images/media/Lab5_Image2.png)
 
-4. Select the Lakehouse2 lakehouse item. 
+4. Select the New button and then choose Warehouse. 
 
-  ![](Exercise1images/media/Lab4_Image4.png)
+  ![](Exercise1images/media/Lab5_Image3.png)
 
-5. In the Get data menu, choose Upload files.
+5. Name the warehouse Warehouse2 and click Create. 
 
-  ![](Exercise1images/media/Lab4_Image5.png)
+  ![](Exercise1images/media/Lab5_Image4.png)
 
-6. Select the folder in the dialog on the right and locate the sales.csv file on your machine. Then click Open in the Open File dialog and Upload in the browser window. 
+6. In your new warehouse, select the Create tables with T-SQL tile.
 
-  ![](Exercise1images/media/Lab4_Image6.png)
+  ![](Exercise1images/media/Lab5_Image5.png)
 
-7. After the file has been uploaded, select the Files/data folder and verify that the sales.csv file has been uploaded
-
-8. In the Explorer for Lakehouse2, select Files. 
-
-  ![](Exercise1images/media/Lab4_Image7.png)
-
-9. Locate the sales.csv file in the Explorer in the web browser. Use the elipsis menu next to the file name to choose Load to Tables and then New Table. 
-
-  ![](Exercise1images/media/Lab4_Image8.png)
-
-10. Name the table Sales and click Load. Wait for the Sales table to load successfully. 
-
-  ![](Exercise1images/media/Lab4_Image9.png)
-
-### Task 2: Query data in the lakehouse
-
-1.  At the top-right of the Lakehouse page, switch from Lakehouse to SQL endpoint. Then wait a short time until the SQL query endpoint for your lakehouse opens in a visual interface from which you can query its tables. 
-
-  ![](Exercise1images/media/Lab4_Image10.png)
-
-2. Use the New SQL query button to open a new query editor, and enter the following SQL query:
+7. Replace the default SQL code with the following: 
+```CREATE TABLE dbo.DimProduct
+(
+    ProductKey INTEGER NOT NULL,
+    ProductAltKey VARCHAR(25) NULL,
+    ProductName VARCHAR(50) NOT NULL,
+    Category VARCHAR(50) NULL,
+    ListPrice DECIMAL(5,2) NULL
+);
+GO
 ```
-SELECT Item, SUM(Quantity * UnitPrice) AS Revenue
-FROM sales
-GROUP BY Item
-ORDER BY Revenue DESC;
+8. Use the ▷ Run button to run the SQL script, which creates a new table named DimProduct in the dbo schema of the data warehouse.
+
+    ![](Exercise1images/media/Lab5_Image6.png)
+
+9. Use the Refresh button on the toolbar to refresh the view. Then, in the Explorer pane, expand Schemas > dbo > Tables and verify that the DimProduct table has been created.
+
+    ![](Exercise1images/media/Lab5_Image7.png)
+
+
+10. On the Home menu tab, use the New SQL Query button to create a new query, and enter the following INSERT statement:
 ```
-
-  ![](Exercise1images/media/Lab4_Image11.png)
-
-3. Use the ▷ Run button to run the query and view the results, which should show the total revenue for each product.
-
-  ![](Exercise1images/media/Lab4_Image12.png)
-
-### Task 3: Query data using a shortcut
-
-1. In the menu on the left, select Workspaces and then choose the FabricWS1 workspace. 
-
-  ![](Exercise1images/media/Lab4_Image13.png)
-
-2. Select the Lakehouse1 lakehouse item. 
-
-  ![](Exercise1images/media/Lab4_Image14.png)
-
-3. Right-click on Tables in the Lakehouse explorer. Choose New chortcut. 
-  ![](Exercise1images/media/Lab4_Image15.png)
-
-4. Under Internal Sources, choose Microsot OneLake. 
-
- ![](Exercise1images/media/Lab4_Image16.png)
-
-5. Select Lakehouse2 as your data source. 
-
- ![](Exercise1images/media/Lab4_Image17.png) 
-
-6. Select the Sales table and then click Create.  
-
-  ![](Exercise1images/media/Lab4_Image18.png) 
-
-7. At the top-right of the Lakehouse page, switch from Lakehouse to SQL endpoint. Then wait a short time until the SQL query endpoint for your lakehouse opens in a visual interface from which you can query its tables. 
-
-8. Use the New SQL query button to open a new query editor, and enter the same SQL query as before:
-```
-SELECT Item, SUM(Quantity * UnitPrice) AS Revenue
-FROM sales
-GROUP BY Item
-ORDER BY Revenue DESC;
+INSERT INTO dbo.DimProduct
+VALUES
+(1, 'RING1', 'Bicycle bell', 'Accessories', 5.99),
+(2, 'BRITE1', 'Front light', 'Accessories', 15.49),
+(3, 'BRITE2', 'Rear light', 'Accessories', 15.49);
+GO
 ```
 
-9. Use the ▷ Run button to run the query and view the results, which should show the total revenue for each product.
+11. Run the new query to insert three rows into the DimProduct table.
 
-  ![](Exercise1images/media/Lab4_Image19.png)
+12. Select New SQL query. 
 
-### Task 4: Create a visual query
+13. Open a new browser window and navigate to https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/create-dw.txt.
 
-1. On the toolbar, select New visual query.
+    ![](Exercise1images/media/Lab5_Image8.png)
 
-  ![](Exercise1images/media/Lab4_Image20.png)
 
-2. Drag the sales table to the new visual query editor pane.
+13. Copy the contents and paste them into the SQL query window. Run the query, which creates a simple data warehouse schema and loads some data. The script should take around 30 seconds to run.
 
-  ![](Exercise1images/media/Lab4_Image21.png)
+### Task 2: Define the data model
 
-3. In the Manage columns menu, select Choose columns. Then select only the SalesOrderNumber and SalesOrderLineNumber columns. Select OK. 
+1. At the bottom of the page in the data warehouse, select the Model tab.
 
-  ![](Exercise1images/media/Lab4_Image22.png)
+![](Exercise1images/media/Lab5_Image9.png)
 
-4. In the Transform menu, select Group by. Then group the data by using the following Basic settings:
-- Group by: SalesOrderNumber
-- New column name: LineItems
-- Operation: Count distinct values
-- Column: SalesOrderLineNumber
+2. Drag the ProductKey field from the FactSalesOrder table and drop it on the ProductKey field in the DimProduct table. Then confirm the following relationship details:
+- Table 1: FactSalesOrder
+- Column: ProductKey
+- Table 2: DimProduct
+- Column: ProductKey
+- Cardinality: Many to one (*:1)
+- Cross filter direction: Single
+- Make this relationship active: Selected
+- Assume referential integrity: Unselected
 
-  ![](Exercise1images/media/Lab4_Image23.png)
+![](Exercise1images/media/Lab5_Image10.png)
 
-5. Click OK and then review the results pane under the visual query to confirm it shows the number of line items for each sales order.
+3. Create many-to-one relationships between the following tables:
+- FactOrderSales.CustomerKey → DimCustomer.CustomerKey
+- FactOrderSales.SalesOrderDateKey → DimDate.DateKey
+
+![](Exercise1images/media/Lab5_Image11.png)
+
+### Task 3: Query the data warehouse
+
+1. Select New SQL Query. Then paste the following query: 
+```
+SELECT  d.[Year] AS CalendarYear,
+        d.[Month] AS MonthOfYear,
+        d.MonthName AS MonthName,
+        c.CountryRegion AS SalesRegion,
+       SUM(so.SalesTotal) AS SalesRevenue
+FROM FactSalesOrder AS so
+JOIN DimDate AS d ON so.SalesOrderDateKey = d.DateKey
+JOIN DimCustomer AS c ON so.CustomerKey = c.CustomerKey
+GROUP BY d.[Year], d.[Month], d.MonthName, c.CountryRegion
+ORDER BY CalendarYear, MonthOfYear, SalesRegion;
+```
+2. Run the query and review the results. 
+
+![](Exercise1images/media/Lab5_Image12.png)
+
 
 ### Summary
 
-In this exercise, you uploaded data to one lakehouse and created a shortcut to the it from another lakehouse. You write a SQL query to access the data. Then you wrote the same SQL query, this time using the shortcut. Finally, you created a visual query that also used the shortcut. 
+In this exercise, you created a data warehouse, populated it with data, and then used T-SQL to query it. 

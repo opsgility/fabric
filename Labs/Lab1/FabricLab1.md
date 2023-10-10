@@ -34,9 +34,9 @@ In this exercise, you will sign up for a Power BI free license and sign up for a
 
     ![](Exercise1images/media/Lab1_Image1.png)
 
-2. Paste your email and hit submit. You may be required to verify additonal information
+2. Paste your email and hit submit. You may be required to verify additional information
 
-    ![]((Exercise1images/media/Lab1_Image2.png)
+    ![](ExerciseImages/media/Lab1_Image2.png)
 
 3. Click Get Started and view the Fabric home page.
 

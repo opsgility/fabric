@@ -1,118 +1,95 @@
 # Lab Guide
 
-## Copy data into a lakehouse with the Copy Data Tool
+## Modify a Data Pipeline
 
 ### Overview
 
-In this lab you will copy data into a lakehouse using the copy tool.
+In this lab you will change an existing data pipeline to delete data before copying and then schedule the pipeline. 
  
 ### Time Estimate
 
 - 15 minutes
 
 
-## Exercise 1: Use the copy tool
+## Exercise 1: Modify a data pipeline
 
 ### Overview
 
-In this exercise, you will copy data into an existing lakehouse. 
+In this exercise, you will modify the pipeline created by the copy tool and then schedule the execution. 
 
 ### Time Estimate
 
 - 15 minutes
 
-### Task 1: Download and install OneLake File Explorer
+### Task 1: Modify the Pipeline
 
 1. In a web browser, navigate to the Fabric home page at https://app.fabric.microsoft.com/home. 
 
 2. Select the Data Factory experience. 
 
-    ![](Exercise1images/media/Lab6_Image1.png)
+    ![](Exercise1images/media/Lab7_Image1.png)
 
 3. In the menu on the left, select Workspaces and then choose the FabricWS1 workspace. 
-    ![](Exercise1images/media/Lab6_Image2.png)
 
-4. Select the New button and then choose Data pipeline.
+    ![](Exercise1images/media/Lab7_Image2.png)
 
-    ![](Exercise1images/media/Lab6_Image3.png)
+4. Select the Ingest Sales Data pipeline from the workspace. 
 
-5. Name the pipeline Ingest Sales Data and click Create. 
+    ![](Exercise1images/media/Lab7_Image3.png)
+
+5. Select the Delete data activity to add it to the canvas.
+
+    ![](Exercise1images/media/Lab7_Image4.png)
+
+6. Position the new Delete data activity to the left of the Copy data activity and connect its On completion output to the Copy data activity 
+
+    ![](Exercise1images/media/Lab7_Image5.png)
+
+6. With the Delete data activity selected, in the pane below the design canvas, set the following properties:
+- General:
+    - Name: Delete old files
+- Source
+    - Data store type: Workspace
+    - Workspace data store: Lakehouse1
+    - File path type: Wildcard file path
+    - Folder path: Files / new_data
+    - Wildcard file name: *.csv
+    - Recursively: Selected
+- Logging settings:
+    - Enable logging: Unselected
+
+    ![](Exercise1images/media/Lab7_Image6.png)
+
+7. On the Home tab, use the 🖫 (Save) icon to save the pipeline. 
+
+    ![](Exercise1images/media/Lab7_Image7.png)
+
+### Task 2: Run and Schedule the Pipeline
+
+1. Use the ▷ Run button to run the pipeline, and wait for all of the activities to complete.
+
+2. Review the status and duration of the activities in the pipeline run on the Output tab below the canvas.
     
-    ![](Exercise1images/media/Lab6_Image4.png)
+    ![](Exercise1images/media/Lab7_Image8.png)
 
-6. Select Copy Data near the middle of the screen. 
-    
-    ![](Exercise1images/media/Lab6_Image5.png)
+3. Press the Schedule button on the Home tab. 
 
-7. In the Copy Data wizard, on the Choose a data source page, in the data sources section, select the Generic protocol tab and then select HTTP.
+    ![](Exercise1images/media/Lab7_Image9.png)
 
-    ![](Exercise1images/media/Lab6_Image6.png)
+4. Create a schedule with the following properties and then click Apply: 
+- Scheduled run: On
+- Repeat: Weekly
+- Every: Sun
+- Time: 5:01pm 
+- Start: leave blank
+- End: leave blank
+- Time zone: Pacific Time (US and Canada)
 
-8. Select Next and then select Create new connection and enter the following settings for the connection to your data source:
-- URL: https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/sales.csv
-- Connection: Create new connection
-- Connection name: Specify a unique name
-- Authentication kind: Basic (Leave the username and password blank)
+    ![](Exercise1images/media/Lab7_Image9.png)
 
-    ![](Exercise1images/media/Lab6_Image7.png)
-
-9. Select Next. Then ensure the following settings are selected:
-- Relative URL: Leave blank
-- Request method: GET
-- Additional headers: Leave blank
-- Binary copy: Unselected
-- Request timeout: Leave blank
-- Max concurrent connections: Leave blank
-
-    ![](Exercise1images/media/Lab6_Image8.png)
-
-10. Select Next, and wait for the data to be sampled and then ensure that the following settings are selected:
-File format: DelimitedText
-Column delimiter: Comma (,)
-Row delimiter: Line feed (\n)
-First row as header: Selected
-Compression type: None
-
-    ![](Exercise1images/media/Lab6_Image9.png)
-
-11. On the Choose data destination page, select Lakehouse1. Then select Next.
-
-    ![](Exercise1images/media/Lab6_Image10.png)
-
-12. Set the following data destination options, and then select Next:
-- Root folder: Files
-- Folder path name: new_data
-- File name: sales2.csv
-- Copy behavior: None
-
-    ![](Exercise1images/media/Lab6_Image11.png)
-
-13. Set the following file format options and then select Next:
-File format: DelimitedText
-Column delimiter: Comma (,)
-Row delimiter: Line feed (\n)
-Add header to file: Selected
-Compression type: None
-
-    ![](Exercise1images/media/Lab6_Image12.png)
-
-14. On the Copy summary page, review the details of your copy operation and then select Save + Run.
-
-15. A new pipeline containing a Copy Data activity is created. The pipeline is executed immediately. Review the information on the Output tab to confirm the pipeline run succeeded. 
-
-    ![](Exercise1images/media/Lab6_Image13.png)
-
-
-### Task 2: Review the copied data
-1. Select Lakehouse1 with the icon that contains waves in the menu on the left. 
-
-    ![](Exercise1images/media/Lab6_Image14.png)
-
-2. In the Explorer, expand Files and select the new_data folder. Verify that you see sales2.csv file. 
-
-    ![](Exercise1images/media/Lab6_Image15.png)
+5. Close the schedule dialog. 
 
 
 ### Summary
 
-In this exercise, you used the Copy Data tool to copy data from an HTTP source to a lakehouse and then verified the new data using the Lakehouse Explorer. 
+In this exercise, you modified an existing pipeline to add a Delete data activity. Then you ran the pipeline to ensure it completed successfully. Finally, you schedule the pipeline to run once a week. 

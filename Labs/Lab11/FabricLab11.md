@@ -1,81 +1,143 @@
 # Lab Guide
 
-## Modify the Default Power BI Dataset
+## Implement real-time analytics, query the results, and make a report
+
 ### Overview
 
-In this lab you will modify a default dataset generated from a warehouse and use it to create a report. 
+In this lab you will create a KQL database, write a KQL query, and create a report that uses a KQL dataset. 
  
 ### Time Estimate
 
-- 15 minutes
+- 30 minutes
 
 
-## Exercise 1: Modify the default dataset
+## Exercise 1: Create a KQL Database, KQL Query, and a Report
 
 ### Overview
 
-In this exercise, modify the default dataset by removing tables and adding measures. Then you will use the dataset to create a report. 
+In this exercise you will create a KQL database, write a KQL query, and create a report that uses a KQL dataset. 
 
-### Task 1: Modify the default dataset
+### Time Estimate
+
+- 30 minutes
+
+### Task 1: Create a KQL Database
 
 1. In a web browser, navigate to the Fabric home page at https://app.fabric.microsoft.com/home. 
 
-2. Select the Synapse Data Warehouse experience. 
+2. Select the Synapse Real-Time Analytics experience. 
 
-3. In the menu on the left, select Workspaces and then choose the FabricWS2 workspace. 
+    ![](Exercise1images/media/Lab13_Image1.png)
 
-4. Select the Warehouse2 warehouse item from the workspace. 
+3. In the menu on the left, select Workspaces and then choose the FabricWS1 workspace. 
 
-    ![](Exercise1images/media/Lab11_Image1.png)
+4. Download the data file for this exercise from https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/sales.csv, saving it as sales.csv on your local computer (or lab VM if applicable). 
 
-5. Locate the DimCustomer table in the Explorer. Click the ellipsis menu next to the table and choose Remove from default dataset. 
+5. Return to browser window with Microsoft Fabric Experience. 
 
-    ![](Exercise1images/media/Lab11_Image2.png)
+6. Select New and then KQL Database. 
+
+    ![](Exercise1images/media/Lab13_Image2.png)
+
+7. Name the database RTDB and click Create. 
+
+    ![](Exercise1images/media/Lab13_Image3.png)
+
+8. Select Get Data and then From Local File. 
+
+    ![](Exercise1images/media/Lab13_Image4.png)
+
+9. On the Ingest Data dialog, name the table Sales. Then click Next: Source 
+
+    ![](Exercise1images/media/Lab13_Image5.png)
+
+10. Select the sales.csv file that you previously downloaded. Then click Next: Schema. 
+
+    ![](Exercise1images/media/Lab13_Image6.png)
+
+11. Use the following settings for the schema settings. Then click Next: Summary.  
+- Compression type: Uncompressed
+- Data format: CSV
+- Ignore the first record: Selected
+- Mapping name: sales_mapping
+
+12. Once the file is uploaded, select the Close button. 
+
+    ![](Exercise1images/media/Lab13_Image7.png)
 
 
-6. Select the FactSalesOrder table. Then select New Measure. 
+### Task 2: Query the KQL Database
 
-7. In the formula bar, add the following measure: 
+1. Highlight the Sales table in the Data Tree. Then select Query Table > Show any 100 records. 
+
+    ![](Exercise1images/media/Lab13_Image8.png)
+
+
+2. A new pane will open with the query and its result. Modify the query to be the following:  
 ```
-Products Sold = DistinctCount('FactSalesOrder'[ProductKey]) 
+Sales
+| where Item == 'Road-250 Black, 48'
 ```
+3. Run the query. Then review the results
 
-  ![](Exercise1images/media/Lab11_Image3.png)
-
-8. Press the commit button. 
-
-9. Add another measure with the following formula: 
+4. Modify the query to be the following: 
 ```
-Last Year Sales = CALCULATE(Sum(FactSalesOrder[SalesTotal]), SAMEPERIODLASTYEAR('DimDate'[DateAltKey]))
+Sales
+| where Item == 'Road-250 Black, 48'
+| where datetime_part('year', OrderDate) > 2020
 ```
+5. Run the query and review the results. 
 
-  ![](Exercise1images/media/Lab11_Image4.png)
+6. Modify the query to be the following: 
+```
+sales
+| where OrderDate between (datetime(2020-01-01 00:00:00) .. datetime(2020-12-31 23:59:59))
+| summarize TotalNetRevenue = sum(UnitPrice) by Item
+| sort by Item asc
+```
+7. Run the query and review the results.
 
-10. Switch to the Model view and go to the Default Dataset tab. Confirm that the DimCustomer table is not shown and that the new measures are shown in FactSalesOrder. 
+8. Select Save as KQL queryset, name the query as Revenue by Product, and click Create.
 
-  ![](Exercise1images/media/Lab11_Image5.png)
+    ![](Exercise1images/media/Lab13_Image9.png)
+
+### Task 2: Query the KQL Database
+
+1. Select Build Power BI report and wait for the report editor to open.
+
+    ![](Exercise1images/media/Lab13_Image10.png)
+
+2. In the report editor, in the Data pane, expand Kusto Query Result and select the Item and Quantity fields.
+
+    ![](Exercise1images/media/Lab13_Image11.png)
 
 
-### Task 2: Create a report using the default dataset
+3. On the report design canvas, select the table visualization that has been added and then in the Visualizations pane, select Clustered bar chart.
 
-1. Select the New report button on the Home tab. 
+    ![](Exercise1images/media/Lab13_Image12.png)
 
-  ![](Exercise1images/media/Lab11_Image6.png)
+4. Resize the visual to take up the entire page. 
 
-2. The report will open in a new window. Once it opens, add a line chart to the page.
+5. Select File and then Save. 
+    
+    ![](Exercise1images/media/Lab13_Image13.png)
 
- ![](Exercise1images/media/Lab11_Image7.png)
+6. Name the file Sales Item Quantities and save it in the FabricWS1. 
 
-3. Populate the line chart with DimDate[DateAltKey] on the x-axis and [Products Sold] on the y-axis. Resize the chart to take up the top half of the page. 
+   ![](Exercise1images/media/Lab13_Image14.png)
 
-![](Exercise1images/media/Lab11_Image8.png)
+7. Close the Power BI window, and in the bar on the left, select the FabricWS1 workspace on the left. 
 
-4. Add a clustered column chart to the page. Populate it with DimProduct[Category] in the x-axis and [Products Sold] on the y-axis. 
+8. Select the Sales Item Quantities report from the list to view your report. 
 
-![](Exercise1images/media/Lab11_Image9.png)
+   ![](Exercise1images/media/Lab13_Image15.png)
 
-5. Select Files and then Save this report. Name the report Product Sales. 
+9. Review the report in your browser window. 
+
+   ![](Exercise1images/media/Lab13_Image16.png)
+
 
 ### Summary
 
-In this exercise, you modified the default dataset by removing tables and adding measures. Then you used the dataset to create a report with a line chart. 
+
+In this exercise, you created a KQL database, wrote a KQL query, and created a report that uses a KQL dataset. 

@@ -7,7 +7,7 @@
 In this lab you will query existing data in a data lake. Then you will query the same data from a different data lake using a shortcut. 
  
 ### Additional Info
-YOu will need permissions to install the OneLake File Explorer on your computer/lab VM to complete this lab. 
+You will need permissions to install the OneLake File Explorer on your computer/lab VM to complete this lab. 
 
 ### Time Estimate
 
@@ -18,13 +18,14 @@ YOu will need permissions to install the OneLake File Explorer on your computer/
 
 ### Overview
 
-In this exercise, you will create two lakehouses. Then you will download and Install OneLake File Explorer and use it up upload data to a lakehouse. Next you will create a shortcut in the second lakehouse to see the data you uploaded to the first. 
+In this exercise, you will create two lakehouses. Then you will download and Install OneLake File Explorer and use it up upload data to a lakehouse. Next you will create a shortcut in the second lakehouse to see the data you uploaded to the first.   
+https://www.microsoft.com/en-us/download/details.aspx?id=105222
 
 ### Task 1: Download and install OneLake File Explorer
 
 1. Navigate to the OneLake File Explorer download page at the URL above and click Download.
 
-    ![](Exerciseimages/media/Lab2_Image1.png)
+    ![](Exercise1images/media/Lab2_Image1.png)
 
 2. A .MSIX file will be downloaded to your machine. This may take several seconds. Locate the MSIX file in your downloads location and double-click it to run the installer. 
 
@@ -67,8 +68,10 @@ In this exercise, you will create two lakehouses. Then you will download and Ins
    ![](Exercise1images/media/Lab2_Image8.png)
 
 ### Task 3: Upload data
-1. Open a new browser window and navigate to the following URL. 
-```https://github.com/microsoft/fabric-samples/blob/689e78676174d4627fc3855165bde9100cb4d19e/docs-samples/data-engineering/dimension_customer.csv```
+1. Open a new browser window and navigate to the following [URL](https://github.com/microsoft/fabric-samples/blob/689e78676174d4627fc3855165bde9100cb4d19e/docs-samples/data-engineering/dimension_customer.csv). 
+```
+https://github.com/microsoft/fabric-samples/blob/689e78676174d4627fc3855165bde9100cb4d19e/docs-samples/data-engineering/dimension_customer.csv
+```
 2. Select Download raw file. 
 
   ![](Exercise1images/media/Lab2_Image9.png)

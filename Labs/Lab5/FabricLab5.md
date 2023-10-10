@@ -1,129 +1,118 @@
 # Lab Guide
 
-## Create and Query a Data Warehouse
+## Copy data into a lakehouse with the Copy Data Tool
 
 ### Overview
-In this exercise, you will create a Fabric Warehouse and then query data using T-SQL. 
+
+In this lab you will copy data into a lakehouse using the copy tool.
+ 
+### Time Estimate
+
+- 15 minutes
+
+
+## Exercise 1: Use the copy tool
+
+### Overview
+
+In this exercise, you will copy data into an existing lakehouse. 
 
 ### Time Estimate
 
-- 20 minutes
+- 15 minutes
 
-## Exercise 1: Query data uploaded to a lakehouse
-
-### Overview
-
-In this exercise, you will create a warehouse with sample data and then execute queries to analyze the data. 
-
-### Task 1: Create a warehouse and poulate it with data
+### Task 1: Download and install OneLake File Explorer
 
 1. In a web browser, navigate to the Fabric home page at https://app.fabric.microsoft.com/home. 
 
-2. Select the Synapse Data Warehouse experience. 
+2. Select the Data Factory experience. 
 
-    ![](Exercise1images/media/Lab5_Image1.png)
+    ![](Exercise1images/media/Lab6_Image1.png)
 
-3. In the menu on the left, select Workspaces and then choose the FabricWS2 workspace. 
+3. In the menu on the left, select Workspaces and then choose the FabricWS1 workspace. 
+    ![](Exercise1images/media/Lab6_Image2.png)
 
-  ![](Exercise1images/media/Lab5_Image2.png)
+4. Select the New button and then choose Data pipeline.
 
-4. Select the New button and then choose Warehouse. 
+    ![](Exercise1images/media/Lab6_Image3.png)
 
-  ![](Exercise1images/media/Lab5_Image3.png)
+5. Name the pipeline Ingest Sales Data and click Create. 
+    
+    ![](Exercise1images/media/Lab6_Image4.png)
 
-5. Name the warehouse Warehouse2 and click Create. 
+6. Select Copy Data near the middle of the screen. 
+    
+    ![](Exercise1images/media/Lab6_Image5.png)
 
-  ![](Exercise1images/media/Lab5_Image4.png)
+7. In the Copy Data wizard, on the Choose a data source page, in the data sources section, select the Generic protocol tab and then select HTTP.
 
-6. In your new warehouse, select the Create tables with T-SQL tile.
+    ![](Exercise1images/media/Lab6_Image6.png)
 
-  ![](Exercise1images/media/Lab5_Image5.png)
+8. Select Next and then select Create new connection and enter the following settings for the connection to your data source:
+- URL: https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/sales.csv
+- Connection: Create new connection
+- Connection name: Specify a unique name
+- Authentication kind: Basic (Leave the username and password blank)
 
-7. Replace the default SQL code with the following: 
-```CREATE TABLE dbo.DimProduct
-(
-    ProductKey INTEGER NOT NULL,
-    ProductAltKey VARCHAR(25) NULL,
-    ProductName VARCHAR(50) NOT NULL,
-    Category VARCHAR(50) NULL,
-    ListPrice DECIMAL(5,2) NULL
-);
-GO
-```
-8. Use the ▷ Run button to run the SQL script, which creates a new table named DimProduct in the dbo schema of the data warehouse.
+    ![](Exercise1images/media/Lab6_Image7.png)
 
-    ![](Exercise1images/media/Lab5_Image6.png)
+9. Select Next. Then ensure the following settings are selected:
+- Relative URL: Leave blank
+- Request method: GET
+- Additional headers: Leave blank
+- Binary copy: Unselected
+- Request timeout: Leave blank
+- Max concurrent connections: Leave blank
 
-9. Use the Refresh button on the toolbar to refresh the view. Then, in the Explorer pane, expand Schemas > dbo > Tables and verify that the DimProduct table has been created.
+    ![](Exercise1images/media/Lab6_Image8.png)
 
-    ![](Exercise1images/media/Lab5_Image7.png)
+10. Select Next, and wait for the data to be sampled and then ensure that the following settings are selected:
+File format: DelimitedText
+Column delimiter: Comma (,)
+Row delimiter: Line feed (\n)
+First row as header: Selected
+Compression type: None
+
+    ![](Exercise1images/media/Lab6_Image9.png)
+
+11. On the Choose data destination page, select Lakehouse1. Then select Next.
+
+    ![](Exercise1images/media/Lab6_Image10.png)
+
+12. Set the following data destination options, and then select Next:
+- Root folder: Files
+- Folder path name: new_data
+- File name: sales2.csv
+- Copy behavior: None
+
+    ![](Exercise1images/media/Lab6_Image11.png)
+
+13. Set the following file format options and then select Next:
+File format: DelimitedText
+Column delimiter: Comma (,)
+Row delimiter: Line feed (\n)
+Add header to file: Selected
+Compression type: None
+
+    ![](Exercise1images/media/Lab6_Image12.png)
+
+14. On the Copy summary page, review the details of your copy operation and then select Save + Run.
+
+15. A new pipeline containing a Copy Data activity is created. The pipeline is executed immediately. Review the information on the Output tab to confirm the pipeline run succeeded. 
+
+    ![](Exercise1images/media/Lab6_Image13.png)
 
 
-10. On the Home menu tab, use the New SQL Query button to create a new query, and enter the following INSERT statement:
-```
-INSERT INTO dbo.DimProduct
-VALUES
-(1, 'RING1', 'Bicycle bell', 'Accessories', 5.99),
-(2, 'BRITE1', 'Front light', 'Accessories', 15.49),
-(3, 'BRITE2', 'Rear light', 'Accessories', 15.49);
-GO
-```
+### Task 2: Review the copied data
+1. Select Lakehouse1 with the icon that contains waves in the menu on the left. 
 
-11. Run the new query to insert three rows into the DimProduct table.
+    ![](Exercise1images/media/Lab6_Image14.png)
 
-12. Select New SQL query. 
+2. In the Explorer, expand Files and select the new_data folder. Verify that you see sales2.csv file. 
 
-13. Open a new browser window and navigate to https://raw.githubusercontent.com/MicrosoftLearning/dp-data/main/create-dw.txt.
-
-    ![](Exercise1images/media/Lab5_Image8.png)
-
-
-13. Copy the contents and paste them into the SQL query window. Run the query, which creates a simple data warehouse schema and loads some data. The script should take around 30 seconds to run.
-
-### Task 2: Define the data model
-
-1. At the bottom of the page in the data warehouse, select the Model tab.
-
-![](Exercise1images/media/Lab5_Image9.png)
-
-2. Drag the ProductKey field from the FactSalesOrder table and drop it on the ProductKey field in the DimProduct table. Then confirm the following relationship details:
-- Table 1: FactSalesOrder
-- Column: ProductKey
-- Table 2: DimProduct
-- Column: ProductKey
-- Cardinality: Many to one (*:1)
-- Cross filter direction: Single
-- Make this relationship active: Selected
-- Assume referential integrity: Unselected
-
-![](Exercise1images/media/Lab5_Image10.png)
-
-3. Create many-to-one relationships between the following tables:
-- FactOrderSales.CustomerKey → DimCustomer.CustomerKey
-- FactOrderSales.SalesOrderDateKey → DimDate.DateKey
-
-![](Exercise1images/media/Lab5_Image11.png)
-
-### Task 3: Query the data warehouse
-
-1. Select New SQL Query. Then paste the following query: 
-```
-SELECT  d.[Year] AS CalendarYear,
-        d.[Month] AS MonthOfYear,
-        d.MonthName AS MonthName,
-        c.CountryRegion AS SalesRegion,
-       SUM(so.SalesTotal) AS SalesRevenue
-FROM FactSalesOrder AS so
-JOIN DimDate AS d ON so.SalesOrderDateKey = d.DateKey
-JOIN DimCustomer AS c ON so.CustomerKey = c.CustomerKey
-GROUP BY d.[Year], d.[Month], d.MonthName, c.CountryRegion
-ORDER BY CalendarYear, MonthOfYear, SalesRegion;
-```
-2. Run the query and review the results. 
-
-![](Exercise1images/media/Lab5_Image12.png)
+    ![](Exercise1images/media/Lab6_Image15.png)
 
 
 ### Summary
 
-In this exercise, you created a data warehouse, populated it with data, and then used T-SQL to query it. 
+In this exercise, you used the Copy Data tool to copy data from an HTTP source to a lakehouse and then verified the new data using the Lakehouse Explorer. 
