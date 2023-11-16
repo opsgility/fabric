@@ -1,0 +1,1 @@
+In this lab you will learn to use Microsoft Fabric. Throughout the lab you will explore the various capabilities and overrall functionality of Microsoft Fabric.
