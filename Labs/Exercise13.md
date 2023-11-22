@@ -32,7 +32,7 @@ In this exercise you will promote a report and certify a lakehouse in Fabric.
 
     ![](Exercise13Images/media/Lab15_Image4.png)
 
-### Task 2: Certify a dataset
+### Task 2: Certify a lakehouse
 
 1. Click the **...** icon next to the **Lakehouse1** item with the type of **Lakehouse** in the workspace list. Select **Settings**. 
 

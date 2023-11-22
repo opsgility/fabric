@@ -208,7 +208,7 @@ In this exercise you will ingest and cleanse data, train and register machine le
 
     ![](Exercise12Images/media/Lab14_Image37.png)
 
-4. Click **New Power BI dataset** at the top of the page.
+4. Click **New Semantic model** at the top of the page.
 
     ![](Exercise12Images/media/Lab14_Image38.png)
 
@@ -216,7 +216,7 @@ In this exercise you will ingest and cleanse data, train and register machine le
 
     ![](Exercise12Images/media/Lab14_Image39.png)
 
-6. Once the page for the new dataset loads, rename the dataset by selecting the dropdown at top left and entering the name **nyctaxi_predictions**. Click outside the drop-down to apply the name change.
+6. Once the page for the new semantic model loads, rename the semantic model by selecting the dropdown at top left and entering the name **nyctaxi_predictions**. Click outside the drop-down to apply the name change.
 
     ![](Exercise12Images/media/Lab14_Image40.png)
 
