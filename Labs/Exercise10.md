@@ -1,14 +1,14 @@
-## Exercise 10: Modify the Default Power BI Dataset
+## Exercise 10: Modify the Default Power BI Semantic Model
 
 ### Overview
 
-In this exercise, you will modify a default dataset generated from a warehouse and use it to create a report.
+In this exercise, you will modify a default semantic model generated from a warehouse and use it to create a report.
 
 ### Time Estimate
 
 - 15 minutes
 
-### Task 1: Modify the default dataset
+### Task 1: Modify the default semantic model
 
 1. Return to the Microsoft Fabric home page and click **Synapse Data Engineering**.
 
@@ -22,7 +22,7 @@ In this exercise, you will modify a default dataset generated from a warehouse a
 
     ![](Exercise10Images/media/Lab11_Image1.png)
 
-4. Locate the **DimCustomer** table on the left. Click the **...** next to the table and select **Remove from default dataset**. 
+4. Locate the **DimCustomer** table on the left. Click the **...** next to the table and select **Remove from default semantic model**. 
 
     ![](Exercise10Images/media/Lab11_Image2.png)
 
@@ -44,11 +44,11 @@ In this exercise, you will modify a default dataset generated from a warehouse a
     Last Year Sales = CALCULATE(Sum(FactSalesOrder[SalesTotal]), SAMEPERIODLASTYEAR('DimDate'[DateAltKey]))
     ```
 
-8. Click **SalesTotal** under **FactSalesOrder** on the left. Click **Model** at the bottom of the page to switch to the **Model** view and select the **Default dataset objects** tab. Confirm that the **DimCustomer** table is not shown and that the new measures are shown in **FactSalesOrder**. 
+8. Click **SalesTotal** under **FactSalesOrder** on the left. Click **Model** at the bottom of the page to switch to the **Model** view and select the **Default semantic model objects** tab. Confirm that the **DimCustomer** table is not shown and that the new measures are shown in **FactSalesOrder**. 
 
     ![](Exercise10Images/media/Lab11_Image5.png)
 
-### Task 2: Create a report using the default dataset
+### Task 2: Create a report using the default semantic model
 
 1. Clickt the **Home** tab then **New report**. 
 
@@ -70,4 +70,4 @@ In this exercise, you will modify a default dataset generated from a warehouse a
 
 ### Summary
 
-In this exercise, you modified the default dataset by removing tables and adding measures. You then used the dataset to create a report with a line chart. 
+In this exercise, you modified the default semantic model by removing tables and adding measures. You then used the semantic model to create a report with a line chart. 

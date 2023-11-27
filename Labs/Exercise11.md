@@ -2,7 +2,7 @@
 
 ### Overview
 
-In this exercise you will create a KQL database, write a KQL query, and create a report that uses a KQL dataset. 
+In this exercise you will create a KQL database, write a KQL query, and create a report that uses a KQL queryset. 
 
 ### Time Estimate
 
@@ -121,4 +121,4 @@ In this exercise you will create a KQL database, write a KQL query, and create a
 
 ### Summary
 
-In this exercise, you created a KQL database, wrote a KQL query, and created a report that uses a KQL dataset. 
+In this exercise, you created a KQL database, wrote a KQL query, and created a report that uses a KQL queryset. 
