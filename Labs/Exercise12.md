@@ -36,21 +36,26 @@ In this exercise you will ingest and cleanse data, train and register machine le
 
 3. Click **Workspaces** on the left then select the **FabricWS1** workspace.
 
-4. Click **Home** on the left. Select **Import notebook** and upload the notebook files that you downloaded in step 1. 
+4. Go to the workspace settings. Locate the Spark settings under Data Engineering/Science. Choose the Environment tab. Set the Runtime Version to 1.1 (Spark 3.3, Delta 2.2). Then Close the Workspace Settings dialog.
+
+    ![](Exercise12Images/media/Lab14_SparkRuntime.png)    
+
+
+5. Click **Home** on the left. Select **Import notebook** and upload the notebook files that you downloaded in step 1. 
 
     ![](Exercise12Images/media/Lab14_Image2.png)
 
-5. Go to the **FabricWS1** workspace and open the **01-ingest-data-into-fabric-lakehouse-using-apache-spark** notebook. 
+6 Go to the **FabricWS1** workspace and open the **01-ingest-data-into-fabric-lakehouse-using-apache-spark** notebook. 
 
     ![](Exercise12Images/media/Lab14_Image3.png)
 
-6. Click **Add** under **Add Lakehouse** on the left. Select **Existing Lakehouse** then click **Add**. Select **Lakehouse1** then click **Add**. 
+7. Click **Add** under **Add Lakehouse** on the left. Select **Existing Lakehouse** then click **Add**. Select **Lakehouse1** then click **Add**. 
 
-7. Run the first cell in the notebook using the **Play** icon. When the run is complete, expand **Spark jobs** and review the information. Run cells 2 and 3 as well. 
+8. Run the first cell in the notebook using the **Play** icon. When the run is complete, expand **Spark jobs** and review the information. Run cells 2 and 3 as well. 
 
     ![](Exercise12Images/media/Lab14_Image4.png)
 
-8. Click the **...** icon next to the **Tables** folder on the left then click **Refresh**. Confirm that the **nyctaxi_raw** table is present.  
+9. Click the **...** icon next to the **Tables** folder on the left then click **Refresh**. Confirm that the **nyctaxi_raw** table is present.  
 
     ![](Exercise12Images/media/Lab14_Image5.png)
 
