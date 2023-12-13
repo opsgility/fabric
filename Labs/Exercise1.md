@@ -68,6 +68,9 @@ This will add your user as an owner on the Azure subscription.
 
     ![](Exercise1Images/media/Lab1_Image1.png)
 
+
+    > **Important** Ensure you use the account created in your Azure pass subscription.
+    
 2. You may be required to verify additional information. Click **Get Started** at the prompt to view the Fabric home page. 
 
     ![](Exercise1Images/media/Lab1_Image2.png)
