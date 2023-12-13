@@ -28,9 +28,39 @@ In this exercise, you will sign up for a Power BI free license and sign up for a
 
 - 15 minutes
 
-### Task 1: Sign up for a Fabric trial
+### Task 1: Create a NEW work account in your Azure Tenant
 
-1. You need to sign up for a Fabric trial and Power BI license in order to use Microsoft Fabric. At the below URL, enter the username located in the **Lab Environment** tab at the top of the Lab Player then click **Submit**. 
+1. Login to https://portal.azure.com using the account you activated your Azure pass with.
+
+1. Click the Hamburger menu in the top left and click **Microsoft Entra ID** 
+
+1. Click **Users** on the left navigation.
+
+1. Create a NEW user and make sure you save the user name and password. This user will be used to access the Microsoft Fabric trial. 
+
+1. At the top of the portal click the search box and type in **Subscriptions** 
+
+1. Click the **Azure Pass** subscription.
+
+1. Click **Access Control** on the left.
+
+1. Click **Add** -> **Add Role Assignmenet** 
+
+1. Click **Privileged administrator roles** and choose **Owner** -> **Next** 
+
+1. Click **Select Members** and select the new user you just created.
+
+1. Click **Conditions** and choose **Allow user to assign all roles (highly privileged)**
+
+1. Click **Review + Assign** 
+
+This will add your user as an owner on the Azure subscription.
+
+### Task 2: Login to Microsoft Fabric with the new account 
+
+1. After the user is created open a new browser tab using in-private/in-cognito mode.
+
+1. You need to sign up for a Fabric trial and Power BI license in order to use Microsoft Fabric. At the below URL sign in with the newly created account. 
 
     ```
     https://app.fabric.microsoft.com
